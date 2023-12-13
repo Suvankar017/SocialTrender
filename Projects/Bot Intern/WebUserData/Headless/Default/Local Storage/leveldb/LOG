@@ -1,0 +1,21 @@
+2023/12/14-00:01:05.056 5100 Reusing MANIFEST D:\Unity\Project\Bot Intern\WebUserData\Headless\Default\Local Storage\leveldb/MANIFEST-000001
+2023/12/14-00:01:05.059 5100 Recovering log #10
+2023/12/14-00:01:05.060 5100 Reusing old log D:\Unity\Project\Bot Intern\WebUserData\Headless\Default\Local Storage\leveldb/000010.log 
+2023/12/14-00:02:25.561 5100 Level-0 table #14: started
+2023/12/14-00:02:25.562 5100 Level-0 table #14: 8909 bytes OK
+2023/12/14-00:02:25.564 5100 Delete type=0 #10
+2023/12/14-00:07:20.517 5100 Level-0 table #16: started
+2023/12/14-00:07:20.523 5100 Level-0 table #16: 10167 bytes OK
+2023/12/14-00:07:20.525 5100 Delete type=0 #13
+2023/12/14-00:14:03.297 5100 Level-0 table #18: started
+2023/12/14-00:14:03.298 5100 Level-0 table #18: 14034 bytes OK
+2023/12/14-00:14:03.299 5100 Delete type=0 #15
+2023/12/14-00:14:03.299 5100 Compacting 4@0 + 1@1 files
+2023/12/14-00:14:03.302 5100 Generated table #19@0: 1949 keys, 39850 bytes
+2023/12/14-00:14:03.302 5100 Compacted 4@0 + 1@1 files => 39850 bytes
+2023/12/14-00:14:03.302 5100 compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/12/14-00:14:03.303 5100 Delete type=2 #8
+2023/12/14-00:14:03.303 5100 Delete type=2 #11
+2023/12/14-00:14:03.303 5100 Delete type=2 #14
+2023/12/14-00:14:03.303 5100 Delete type=2 #16
+2023/12/14-00:14:03.303 5100 Delete type=2 #18

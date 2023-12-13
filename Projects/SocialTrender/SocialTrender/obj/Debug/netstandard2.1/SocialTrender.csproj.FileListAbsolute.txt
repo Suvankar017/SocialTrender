@@ -1,0 +1,13 @@
+D:\Programming\C#\SocialTrender\SocialTrender\bin\Debug\netstandard2.1\selenium-manager\linux\selenium-manager
+D:\Programming\C#\SocialTrender\SocialTrender\bin\Debug\netstandard2.1\selenium-manager\macos\selenium-manager
+D:\Programming\C#\SocialTrender\SocialTrender\bin\Debug\netstandard2.1\selenium-manager\windows\selenium-manager.exe
+D:\Programming\C#\SocialTrender\SocialTrender\bin\Debug\netstandard2.1\SocialTrender.deps.json
+D:\Programming\C#\SocialTrender\SocialTrender\bin\Debug\netstandard2.1\SocialTrender.dll
+D:\Programming\C#\SocialTrender\SocialTrender\bin\Debug\netstandard2.1\SocialTrender.pdb
+D:\Programming\C#\SocialTrender\SocialTrender\obj\Debug\netstandard2.1\SocialTrender.csproj.AssemblyReference.cache
+D:\Programming\C#\SocialTrender\SocialTrender\obj\Debug\netstandard2.1\SocialTrender.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\C#\SocialTrender\SocialTrender\obj\Debug\netstandard2.1\SocialTrender.AssemblyInfoInputs.cache
+D:\Programming\C#\SocialTrender\SocialTrender\obj\Debug\netstandard2.1\SocialTrender.AssemblyInfo.cs
+D:\Programming\C#\SocialTrender\SocialTrender\obj\Debug\netstandard2.1\SocialTrender.csproj.CoreCompileInputs.cache
+D:\Programming\C#\SocialTrender\SocialTrender\obj\Debug\netstandard2.1\SocialTrender.dll
+D:\Programming\C#\SocialTrender\SocialTrender\obj\Debug\netstandard2.1\SocialTrender.pdb
