@@ -17,15 +17,17 @@ public class SocialMediaTrendManager : MonoBehaviour
     }
 
     [SerializeField] private bool m_ShowBrowser = false;
-    [SerializeField] private int m_MaxPostCount = 20;
+    [SerializeField] private int m_MaxPostCount = 8;
     //[SerializeField] private string m_Keyword = "games";
 
     public string[] PostLinks { get; private set; }
     public List<byte[]> Images { get; private set; }
+    public float Progress { get; private set; }
+    public string ProgressInfo { get; private set; }
 
     public event Action OnCompleted;
     public event Action OnFailed;
-    public event Action OnSearchBegin;
+    public event Action OnProgressReceived;
 
     private void Awake()
     {
@@ -43,6 +45,7 @@ public class SocialMediaTrendManager : MonoBehaviour
         Trender.Init(m_ShowBrowser, null);
         Trender.SetSearchCompleteCallback(OnSearchCompleted);
         Trender.SetSearchFailedCallback(OnSearchFailed);
+        Trender.SetProgressReceivedCallback(OnReceiveProgress);
     }
 
     private void OnDestroy()
@@ -55,8 +58,15 @@ public class SocialMediaTrendManager : MonoBehaviour
 
     public void Search(string keyword)
     {
-        OnSearchBegin?.Invoke();
         Trender.Search(keyword, m_MaxPostCount);
+    }
+
+    private void OnReceiveProgress(float progress, string info)
+    {
+        Progress = progress;
+        ProgressInfo = info;
+
+        OnProgressReceived?.Invoke();
     }
 
     private void OnSearchCompleted(string[] postLinks, List<byte[]> images)
@@ -65,12 +75,6 @@ public class SocialMediaTrendManager : MonoBehaviour
         Images = images;
 
         OnCompleted?.Invoke();
-
-        print("SEARCH SUCCESSFULL --------");
-        foreach (string link in postLinks)
-        {
-            print(link);
-        }
     }
 
     private void OnSearchFailed()

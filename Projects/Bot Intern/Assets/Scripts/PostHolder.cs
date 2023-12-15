@@ -9,6 +9,9 @@ public class PostHolder : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (string.IsNullOrEmpty(link) || string.IsNullOrWhiteSpace(link))
+            return;
+
         Application.OpenURL(link);
     }
 }

@@ -12,6 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool canMove;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -48,7 +49,8 @@ namespace StarterAssets
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			move = newMoveDirection;
+			if (canMove)
+				move = newMoveDirection;
 		} 
 
 		public void LookInput(Vector2 newLookDirection)
@@ -58,7 +60,8 @@ namespace StarterAssets
 
 		public void JumpInput(bool newJumpState)
 		{
-			jump = newJumpState;
+			if (canMove)
+				jump = newJumpState;
 		}
 
 		public void SprintInput(bool newSprintState)

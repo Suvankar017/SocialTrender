@@ -17,8 +17,8 @@ namespace SocialTrender
         private const string c_Password = "BotIntern@143";
         private const string c_IsLoggedIn = "isInstagramLoggedIn";
 
-        public InstagramSearcher(IWebDriver browser, string userDataDirectoryPath, Action<string> onLogMessage) :
-            base(browser, userDataDirectoryPath, onLogMessage)
+        public InstagramSearcher(IWebDriver browser, string userDataDirectoryPath, Action<string> onLogMessage, Action<float, string> onProgress) :
+            base(browser, userDataDirectoryPath, onLogMessage, onProgress)
         {
         }
 
@@ -29,16 +29,22 @@ namespace SocialTrender
 
         private void OnSearch(string keyword, int maxPostCount)
         {
+            // 1
+            m_OnProgress?.Invoke(Utils.Remap(1.0f, 0.0f, 8.0f, 0.0f, 1.0f), "Loading datas");
             // Load previous session data
             m_OnLogMessage?.Invoke("Loading saved datas");
             LoadSavedData();
             m_OnLogMessage?.Invoke("Loaded saved datas");
 
+            // 2
+            m_OnProgress?.Invoke(Utils.Remap(2.0f, 0.0f, 8.0f, 0.0f, 1.0f), "Opening");
             // Open instagram
             m_OnLogMessage?.Invoke("Opening instagram");
             m_Browser.Navigate().GoToUrl(c_WebsiteURL);
             m_OnLogMessage?.Invoke("Opened instagram");
 
+            // 3
+            m_OnProgress?.Invoke(Utils.Remap(3.0f, 0.0f, 8.0f, 0.0f, 1.0f), "Logging");
             // Login
             if (!m_IsLoggedIn)
             {
@@ -73,6 +79,8 @@ namespace SocialTrender
                 m_OnLogMessage?.Invoke("Already logged in");
             }
 
+            // 4
+            m_OnProgress?.Invoke(Utils.Remap(4.0f, 0.0f, 8.0f, 0.0f, 1.0f), "Searching");
             // Click on search button
             try
             {
@@ -101,6 +109,8 @@ namespace SocialTrender
                 return;
             }
 
+            // 5
+            m_OnProgress?.Invoke(Utils.Remap(5.0f, 0.0f, 8.0f, 0.0f, 1.0f), "Collecting results");
             // Get search results
             List<IWebElement> searchableElements = new List<IWebElement>();
             try
@@ -130,6 +140,8 @@ namespace SocialTrender
                 return;
             }
 
+            // 6
+            m_OnProgress?.Invoke(Utils.Remap(6.0f, 0.0f, 8.0f, 0.0f, 1.0f), "Collecting channel links");
             // Get all channel links
             List<string> channelLinks = new List<string>();
             if (keyword[0] == '#')
@@ -163,6 +175,8 @@ namespace SocialTrender
                 }
             }
 
+            // 7
+            m_OnProgress?.Invoke(Utils.Remap(7.0f, 0.0f, 8.0f, 0.0f, 1.0f), "Collecting post links");
             // Get all post links
             List<string> postLinks = new List<string>();
             if (keyword[0] == '#')
@@ -255,6 +269,8 @@ namespace SocialTrender
                 }
             }
 
+            // 8
+            m_OnProgress?.Invoke(Utils.Remap(8.0f, 0.0f, 8.0f, 0.0f, 1.0f), "Generating posts");
             // Get all post's snapshot
             List<byte[]>images = new List<byte[]>();
             for (int i = 0; i < postLinks.Count; i++)

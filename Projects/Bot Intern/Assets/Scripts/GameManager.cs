@@ -2,27 +2,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text m_DebugText;
     [SerializeField] private TMP_InputField m_SearchField;
     [SerializeField] private RawImage[] m_Images;
+    [SerializeField] private TMP_Text[] m_ProgressTexts;
+    [SerializeField] private Material m_ProgressMat;
+    [SerializeField] private GameObject[] m_LoadingPages;
+
+    public static GameManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnEnable()
     {
         SocialMediaTrendManager.Instance.OnCompleted += OnSuccess;
         SocialMediaTrendManager.Instance.OnFailed += OnFail;
-        SocialMediaTrendManager.Instance.OnSearchBegin += OnSearchBegin;
+        SocialMediaTrendManager.Instance.OnProgressReceived += UpdateProgress;
     }
 
     private void OnDisable()
     {
         SocialMediaTrendManager.Instance.OnCompleted -= OnSuccess;
         SocialMediaTrendManager.Instance.OnFailed -= OnFail;
-        SocialMediaTrendManager.Instance.OnSearchBegin -= OnSearchBegin;
     }
 
     private void Update()
@@ -30,24 +39,35 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.KeypadPeriod))
             QuitApplication();
 
-        if (onBegin)
-        {
-            onBegin = false;
-            m_DebugText.text = "Begin";
-        }
-
         if (onSuccess)
         {
             onSuccess = false;
-            m_DebugText.text = $"Search Completed : {SocialMediaTrendManager.Instance.PostLinks.Length}";
 
             UpdateImages();
+            SetActivePostImages(true);
+            SetActiveLoadingPages(false);
         }
 
         if (onFail)
         {
             onFail = false;
-            m_DebugText.text = "Search Failed";
+
+            foreach (TMP_Text progressText in m_ProgressTexts)
+            {
+                progressText.text = "Failed";
+            }
+        }
+
+        if (m_UpdateProgress)
+        {
+            m_UpdateProgress = false;
+
+            m_ProgressMat.SetFloat("_Progress", m_Progress);
+
+            foreach (TMP_Text progressText in m_ProgressTexts)
+            {
+                progressText.text = m_ProgressInfo;
+            }
         }
     }
 
@@ -59,13 +79,26 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    private bool onBegin = false;
     private bool onSuccess = false;
     private bool onFail = false;
+    private bool m_UpdateProgress = false;
+    private float m_Progress = 0.0f;
+    private string m_ProgressInfo = "";
 
-    private void OnSearchBegin()
+    public void SetActiveLoadingPages(bool enable)
     {
-        onBegin = true;
+        foreach (GameObject page in m_LoadingPages)
+        {
+            page.SetActive(enable);
+        }
+    }
+
+    public void SetActivePostImages(bool enable)
+    {
+        foreach (RawImage post in m_Images)
+        {
+            post.gameObject.SetActive(enable);
+        }
     }
 
     private void OnSuccess()
@@ -90,6 +123,13 @@ public class GameManager : MonoBehaviour
             m_Images[i].texture = texture;
             m_Images[i].GetComponent<PostHolder>().link = links[i];
         }
+    }
+
+    private void UpdateProgress()
+    {
+        m_Progress = Mathf.Clamp01(SocialMediaTrendManager.Instance.Progress);
+        m_ProgressInfo = SocialMediaTrendManager.Instance.ProgressInfo;
+        m_UpdateProgress = true;
     }
 
     public void SearchKeyword()

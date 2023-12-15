@@ -10,6 +10,8 @@ namespace SocialTrender
     {
         private IWebDriver m_Browser;
         private List<Searcher> m_Searcher;
+        private Action<float, string> m_OnProgressReceived;
+        private float m_Progress;
 
         private static Trender s_Instance;
 
@@ -21,7 +23,7 @@ namespace SocialTrender
             m_Browser = new ChromeDriver(options);
             m_Searcher = new List<Searcher>()
             {
-                new InstagramSearcher(m_Browser, userDataDirectoryPath, onLogMessage)
+                new InstagramSearcher(m_Browser, userDataDirectoryPath, onLogMessage, OnProgressReceived)
             };
         }
 
@@ -46,6 +48,17 @@ namespace SocialTrender
         private void SetFailCallback(Action onFail)
         {
             m_Searcher.ForEach(searcher => searcher.SetOnFailCallback(onFail));
+        }
+
+        private void SetProgressCallback(Action<float, string> onProgress)
+        {
+            m_OnProgressReceived = onProgress;
+        }
+
+        private void OnProgressReceived(float progress, string info)
+        {
+            m_Progress = progress / m_Searcher.Count;
+            m_OnProgressReceived?.Invoke(m_Progress, info);
         }
 
         private ChromeOptions CreateChromeOptions(bool showBrowser, string userDataDirectoryPath)
@@ -104,6 +117,14 @@ namespace SocialTrender
                 return;
 
             s_Instance.SetFailCallback(onSearchFail);
+        }
+
+        public static void SetProgressReceivedCallback(Action<float, string> onProgressReceived)
+        {
+            if (s_Instance == null)
+                return;
+
+            s_Instance.SetProgressCallback(onProgressReceived);
         }
 
     }

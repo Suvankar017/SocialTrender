@@ -115,11 +115,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\C#\\SocialTrender\\TrenderApp\\TrenderApp.csproj",
+      "projectUniqueName": "D:\\Programming\\App Development\\SocialTrender\\Projects\\SocialTrender\\TrenderApp\\TrenderApp.csproj",
       "projectName": "TrenderApp",
-      "projectPath": "D:\\Programming\\C#\\SocialTrender\\TrenderApp\\TrenderApp.csproj",
+      "projectPath": "D:\\Programming\\App Development\\SocialTrender\\Projects\\SocialTrender\\TrenderApp\\TrenderApp.csproj",
       "packagesPath": "C:\\Users\\youge\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\C#\\SocialTrender\\TrenderApp\\obj\\",
+      "outputPath": "D:\\Programming\\App Development\\SocialTrender\\Projects\\SocialTrender\\TrenderApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -140,8 +140,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Programming\\C#\\SocialTrender\\SocialTrender\\SocialTrender.csproj": {
-              "projectPath": "D:\\Programming\\C#\\SocialTrender\\SocialTrender\\SocialTrender.csproj"
+            "D:\\Programming\\App Development\\SocialTrender\\Projects\\SocialTrender\\SocialTrender\\SocialTrender.csproj": {
+              "projectPath": "D:\\Programming\\App Development\\SocialTrender\\Projects\\SocialTrender\\SocialTrender\\SocialTrender.csproj"
             }
           }
         }

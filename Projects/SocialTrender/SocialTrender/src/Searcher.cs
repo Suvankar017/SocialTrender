@@ -18,16 +18,18 @@ namespace SocialTrender
         protected Action<string[], List<byte[]>> m_OnSearchComplete;
         protected Action m_OnSearchFail;
         protected Action<string> m_OnLogMessage;
+        protected Action<float, string> m_OnProgress;
 
         private const string c_SaveFileName = "SaveData";
 
-        public Searcher(IWebDriver browser, string userDataDirectoryPath, Action<string> onLogMessage)
+        public Searcher(IWebDriver browser, string userDataDirectoryPath, Action<string> onLogMessage, Action<float, string> onProgress)
         {
             m_Browser = browser;
             m_UserDataDirectoryPath = userDataDirectoryPath;
             m_SaveFilePath = $"{userDataDirectoryPath}\\{c_SaveFileName}.txt";
             m_IsLoggedIn = false;
             m_OnLogMessage = onLogMessage;
+            m_OnProgress = onProgress;
         }
 
         public abstract Task Search(string keyword, int maxPostCount);
