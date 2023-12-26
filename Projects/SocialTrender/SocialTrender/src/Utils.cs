@@ -20,5 +20,15 @@ namespace SocialTrender
         {
             return Lerp(a2, b2, InverseLerp(value, a1, b1));
         }
+
+        public static float Remap01(float value, float a, float b)
+        {
+            return Lerp(0.0f, 1.0f, InverseLerp(value, a, b));
+        }
+
+        public static float Percent(int percentage, float a, float b)
+        {
+            return Lerp(0.0f, 1.0f, InverseLerp(percentage * 0.01f, a, b));
+        }
     }
 }

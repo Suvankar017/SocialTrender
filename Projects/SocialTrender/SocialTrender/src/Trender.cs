@@ -1,87 +1,53 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+//using MongoDB.Driver;
 
 namespace SocialTrender
 {
     public class Trender
     {
         private IWebDriver m_Browser;
-        private List<Searcher> m_Searcher;
-        private Action<float, string> m_OnProgressReceived;
-        private float m_Progress;
-
+        private List<Searcher> m_Searchers;
         private static Trender s_Instance;
 
-        private Trender(bool showBrowser, Action<string> onLogMessage)
+        private Trender(bool showBrowser, string userDataDirectoryPath)
         {
-            string userDataDirectoryPath = $"{Directory.GetCurrentDirectory()}\\WebUserData\\Headless";
-
             ChromeOptions options = CreateChromeOptions(showBrowser, userDataDirectoryPath);
             m_Browser = new ChromeDriver(options);
-            m_Searcher = new List<Searcher>()
+
+            //try
+            //{
+            //    MongoClient client = new MongoClient(MongoDBUtil.c_ConnectionURI);
+            //    IMongoDatabase database = client.GetDatabase(MongoDBUtil.c_DatabaseName);
+
+            //    m_Searchers = new List<Searcher>()
+            //    {
+            //        new InstagramSearcher(m_Browser, database, userDataDirectoryPath)
+            //    };
+            //}
+            //catch
+            //{
+            //    m_Searchers = new List<Searcher>();
+            //}
+
+            m_Searchers = new List<Searcher>()
             {
-                new InstagramSearcher(m_Browser, userDataDirectoryPath, onLogMessage, OnProgressReceived)
+                new InstagramSearcher(m_Browser, userDataDirectoryPath)
             };
         }
 
-        private void Close()
-        {
-            m_Browser.Quit();
-        }
 
-        private async void OnSearch(string keyword, int maxPostCount)
-        {
-            foreach (Searcher searcher in m_Searcher)
-            {
-                await searcher.Search(keyword, maxPostCount);
-            }
-        }
-
-        private void SetCompleteCallback(Action<string[], List<byte[]>> onComplete)
-        {
-            m_Searcher.ForEach(searcher => searcher.SetOnCompleteCallback(onComplete));
-        }
-
-        private void SetFailCallback(Action onFail)
-        {
-            m_Searcher.ForEach(searcher => searcher.SetOnFailCallback(onFail));
-        }
-
-        private void SetProgressCallback(Action<float, string> onProgress)
-        {
-            m_OnProgressReceived = onProgress;
-        }
-
-        private void OnProgressReceived(float progress, string info)
-        {
-            m_Progress = progress / m_Searcher.Count;
-            m_OnProgressReceived?.Invoke(m_Progress, info);
-        }
-
-        private ChromeOptions CreateChromeOptions(bool showBrowser, string userDataDirectoryPath)
-        {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-            //options.AddArgument("--window-size=800,600");
-            options.AddArgument("--disable-notifications");
-            options.AddArguments($"--user-data-dir={userDataDirectoryPath}");
-            options.AddArgument("--log-level=3");
-            if (!showBrowser)
-                options.AddArgument("--headless");
-
-            return options;
-        }
-
-
-        public static bool Init(bool showBrowser, Action<string> onLogMessage)
+        public static bool Init(bool showBrowser, string userDataDirectoryPath)
         {
             if (s_Instance != null)
                 return false;
 
-            s_Instance = new Trender(showBrowser, onLogMessage);
+            if (!string.IsNullOrEmpty(userDataDirectoryPath))
+                userDataDirectoryPath += "\\WebUserData";
+
+            s_Instance = new Trender(showBrowser, userDataDirectoryPath);
             return true;
         }
 
@@ -95,37 +61,54 @@ namespace SocialTrender
             return true;
         }
 
-        public static void Search(string keyword, int maxPostCount)
+        public static void SetCallback(CallbackData data)
         {
             if (s_Instance == null)
                 return;
 
-            s_Instance.OnSearch(keyword, maxPostCount);
+            s_Instance.SetCallbackData(data);
         }
 
-        public static void SetSearchCompleteCallback(Action<string[], List<byte[]>> onSearchComplete)
+        public static void Search(string keyword, int maxSearchResultCount, bool forceWebSearch = false)
         {
             if (s_Instance == null)
                 return;
 
-            s_Instance.SetCompleteCallback(onSearchComplete);
+            s_Instance.SearchAsync(keyword, maxSearchResultCount, forceWebSearch);
         }
 
-        public static void SetSearchFailedCallback(Action onSearchFail)
+
+        private void SetCallbackData(CallbackData data)
         {
-            if (s_Instance == null)
-                return;
-
-            s_Instance.SetFailCallback(onSearchFail);
+            m_Searchers.ForEach((scraper) => scraper.SetCallbacks(data));
         }
 
-        public static void SetProgressReceivedCallback(Action<float, string> onProgressReceived)
+        private void Close()
         {
-            if (s_Instance == null)
-                return;
-
-            s_Instance.SetProgressCallback(onProgressReceived);
+            m_Browser.Quit();
         }
 
+        private async void SearchAsync(string keyword, int maxSearchResultCount, bool forceWebSearch)
+        {
+            foreach (Searcher searcher in m_Searchers)
+            {
+                await searcher.SearchAsync(keyword, maxSearchResultCount, forceWebSearch);
+            }
+        }
+
+        private ChromeOptions CreateChromeOptions(bool showBrowser, string userDataDirectoryPath)
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("--start-maximized");
+            //options.AddArgument("--window-size=800,600");
+            options.AddArgument("--disable-notifications");
+            options.AddArguments($"--user-data-dir={userDataDirectoryPath}");
+            options.AddArgument("--log-level=3");
+
+            if (!showBrowser)
+                options.AddArgument("--headless");
+
+            return options;
+        }
     }
 }

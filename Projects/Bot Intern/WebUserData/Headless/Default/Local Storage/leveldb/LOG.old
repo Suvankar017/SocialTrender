@@ -1,3 +1,6 @@
-2023/12/15-09:27:36.964 aa7c Reusing MANIFEST D:\Programming\App Development\SocialTrender\Projects\Bot Intern\WebUserData\Headless\Default\Local Storage\leveldb/MANIFEST-000001
-2023/12/15-09:27:37.002 aa7c Recovering log #24
-2023/12/15-09:27:37.002 aa7c Reusing old log D:\Programming\App Development\SocialTrender\Projects\Bot Intern\WebUserData\Headless\Default\Local Storage\leveldb/000024.log 
+2023/12/15-21:17:00.915 2fc4 Reusing MANIFEST D:\Programming\App Development\SocialTrender\Projects\Bot Intern\WebUserData\Headless\Default\Local Storage\leveldb/MANIFEST-000001
+2023/12/15-21:17:00.918 2fc4 Recovering log #24
+2023/12/15-21:17:00.919 2fc4 Reusing old log D:\Programming\App Development\SocialTrender\Projects\Bot Intern\WebUserData\Headless\Default\Local Storage\leveldb/000024.log 
+2023/12/15-21:19:16.398 2248 Level-0 table #28: started
+2023/12/15-21:19:16.405 2248 Level-0 table #28: 12379 bytes OK
+2023/12/15-21:19:16.406 2248 Delete type=0 #24

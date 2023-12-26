@@ -1,31 +1,54 @@
 ﻿using SocialTrender;
+using System;
+using System.IO;
 
-bool m_IsRunning = true;
-
-Trender.Init(false, Log.Info);
-
-Trender.SetSearchCompleteCallback((links, images) =>
+public class Program
 {
-    m_IsRunning = false;
-    Log.Success("Search completed successfully");
+    public static void Main()
+    {
+        CallbackData callbackData = new CallbackData()
+        {
+            SearchCompleteCallback = (data) =>
+            {
+                Log.Success("Search completed");
+                Log.Info($"Result count : {data.Images.Count}");
+            },
+            SearchFailCallback = () =>
+            {
+                Log.Error("Search failed");
+            },
+            LogMessageCallback = (msg) =>
+            {
+                //Log.Info(msg);
+            },
+            ProgressCallback = (data) =>
+            {
+                Log.Info($"Progress : {data.Progress * 100}%\nMessage : {data.Message}\n");
+            }
+        };
 
-    foreach (var link in links)
-        Log.Link(link);
-});
+        Trender.Init(false, Directory.GetCurrentDirectory());
+        Trender.SetCallback(callbackData);
 
-Trender.SetSearchFailedCallback(() =>
-{
-    m_IsRunning = false;
-    Log.Error("SEARCH FAILED !!!");
-});
+        Run();
 
-Trender.Search("#younginnovator", 20);
+        Trender.Shutdown();
+    }
 
-while (m_IsRunning)
-{
-    Thread.Sleep(1000);
+    private static void Run()
+    {
+        bool isRunning = true;
+
+        while (isRunning)
+        {
+            Console.Clear();
+
+            Console.Write("Write a search keyword : ");
+            string keyword = Console.ReadLine();
+
+            Trender.Search("#" + keyword, 8);
+
+            Console.ReadLine();
+        }
+    }
 }
-
-Console.ReadLine();
-
-Trender.Shutdown();

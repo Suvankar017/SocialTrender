@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SocialTrender")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+811cb3141a8f268f10a95686019921912716bd70")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ace1ba1a0143e917e674b62efd2f12f5f2461aba")]
 [assembly: System.Reflection.AssemblyProductAttribute("SocialTrender")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SocialTrender")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

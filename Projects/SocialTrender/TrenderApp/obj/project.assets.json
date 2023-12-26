@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    ".NETCoreApp,Version=v3.1": {
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -104,7 +104,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    ".NETCoreApp,Version=v3.1": [
       "SocialTrender >= 1.0.0"
     ]
   },
@@ -130,15 +130,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
             "D:\\Programming\\App Development\\SocialTrender\\Projects\\SocialTrender\\SocialTrender\\SocialTrender.csproj": {
               "projectPath": "D:\\Programming\\App Development\\SocialTrender\\Projects\\SocialTrender\\SocialTrender\\SocialTrender.csproj"
@@ -153,8 +153,8 @@
       }
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -171,7 +171,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

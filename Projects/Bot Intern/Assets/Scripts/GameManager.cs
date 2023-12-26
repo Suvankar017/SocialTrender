@@ -1,3 +1,4 @@
+using SocialTrender;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -114,21 +115,21 @@ public class GameManager : MonoBehaviour
     private void UpdateImages()
     {
         List<byte[]> images = SocialMediaTrendManager.Instance.Images;
-        string[] links = SocialMediaTrendManager.Instance.PostLinks;
+        PostData[] posts = SocialMediaTrendManager.Instance.Posts;
 
         for (int i = 0; i < images.Count; i++)
         {
             Texture2D texture = new Texture2D(800, 600);
             texture.LoadImage(images[i]);
             m_Images[i].texture = texture;
-            m_Images[i].GetComponent<PostHolder>().link = links[i];
+            m_Images[i].GetComponent<PostHolder>().link = posts[i].Link;
         }
     }
 
     private void UpdateProgress()
     {
         m_Progress = Mathf.Clamp01(SocialMediaTrendManager.Instance.Progress);
-        m_ProgressInfo = SocialMediaTrendManager.Instance.ProgressInfo;
+        m_ProgressInfo = SocialMediaTrendManager.Instance.ProgressMessage;
         m_UpdateProgress = true;
     }
 

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -9,46 +9,56 @@ namespace SocialTrender
 {
     public abstract class Searcher
     {
-
         protected IWebDriver m_Browser;
+        protected bool m_IsLoggedIn;
         protected string m_SaveFilePath;
         protected string m_UserDataDirectoryPath;
-        protected bool m_IsLoggedIn;
 
-        protected Action<string[], List<byte[]>> m_OnSearchComplete;
-        protected Action m_OnSearchFail;
-        protected Action<string> m_OnLogMessage;
-        protected Action<float, string> m_OnProgress;
+        protected Action<UnityData> m_SearchCompleteCallback;
+        protected Action m_SearchFailCallback;
+        protected Action<string> m_LogMessageCallback;
+        protected Action<ProgressData> m_ProgressCallback;
 
         private const string c_SaveFileName = "SaveData";
 
-        public Searcher(IWebDriver browser, string userDataDirectoryPath, Action<string> onLogMessage, Action<float, string> onProgress)
+        public Searcher(IWebDriver browser, string userDataDirectoryPath)
         {
             m_Browser = browser;
+            m_IsLoggedIn = false;
             m_UserDataDirectoryPath = userDataDirectoryPath;
             m_SaveFilePath = $"{userDataDirectoryPath}\\{c_SaveFileName}.txt";
-            m_IsLoggedIn = false;
-            m_OnLogMessage = onLogMessage;
-            m_OnProgress = onProgress;
+
+            m_SearchCompleteCallback = (data) => { };
+            m_SearchFailCallback = () => { };
+            m_LogMessageCallback = (msg) => { };
+            m_ProgressCallback = (data) => { };
         }
 
-        public abstract Task Search(string keyword, int maxPostCount);
+        public abstract Task SearchAsync(string keyword, int maxSearchResultCount, bool forceWebSearch);
 
-        public void SetOnCompleteCallback(Action<string[], List<byte[]>> onSearchComplete)
+        public void SetCallbacks(CallbackData data)
         {
-            m_OnSearchComplete = onSearchComplete;
+            m_SearchCompleteCallback = data.SearchCompleteCallback ?? ((data) => { });
+            m_SearchFailCallback = data.SearchFailCallback ?? (() => { });
+            m_LogMessageCallback = data.LogMessageCallback ?? ((msg) => { });
+            m_ProgressCallback = data.ProgressCallback ?? ((data) => { });
         }
 
-        public void SetOnFailCallback(Action onSearchFail)
+        protected byte[] TakeScreenshot(int i)
         {
-            m_OnSearchFail = onSearchFail;
-        }
+            string dir = Directory.GetCurrentDirectory() + "\\Output";
 
-        protected byte[] TakeScreenshot()
-        {
             Screenshot screenshot = ((ITakesScreenshot)m_Browser).GetScreenshot();
+            Directory.CreateDirectory($"Desktop\\Output");
+
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            screenshot.SaveAsFile($"{dir}\\{i}.png");
+
             return screenshot.AsByteArray;
         }
+
 
         protected static WebDriverWait Wait(IWebDriver driver, double timeoutInSeconds)
         {
@@ -158,6 +168,5 @@ namespace SocialTrender
 
             return condition;
         }
-
     }
 }

@@ -21,3 +21,41 @@ D:\Programming\C#\SocialTrender\TrenderApp\obj\Debug\net8.0\refint\TrenderApp.dl
 D:\Programming\C#\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.pdb
 D:\Programming\C#\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.genruntimeconfig.cache
 D:\Programming\C#\SocialTrender\TrenderApp\obj\Debug\net8.0\ref\TrenderApp.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\TrenderApp.exe
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\TrenderApp.deps.json
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\TrenderApp.runtimeconfig.json
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\TrenderApp.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\TrenderApp.pdb
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\AWSSDK.Core.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\DnsClient.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\MongoDB.Bson.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\MongoDB.Driver.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\MongoDB.Driver.Core.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\WebDriver.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\SharpCompress.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\Snappier.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\ZstdSharp.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\SocialTrender.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\bin\Debug\net8.0\SocialTrender.pdb
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.csproj.AssemblyReference.cache
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.AssemblyInfoInputs.cache
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.AssemblyInfo.cs
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.csproj.CoreCompileInputs.cache
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.sourcelink.json
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.csproj.CopyComplete
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\refint\TrenderApp.dll
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.pdb
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\TrenderApp.genruntimeconfig.cache
+D:\Programming\App Development\SocialTrender\Projects\SocialTrender\TrenderApp\obj\Debug\net8.0\ref\TrenderApp.dll

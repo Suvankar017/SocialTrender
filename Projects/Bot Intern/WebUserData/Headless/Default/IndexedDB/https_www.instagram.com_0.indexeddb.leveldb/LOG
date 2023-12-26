@@ -1,3 +1,7 @@
-2023/12/15-09:39:52.955 4480 Reusing MANIFEST D:\Programming\App Development\SocialTrender\Projects\Bot Intern\WebUserData\Headless\Default\IndexedDB\https_www.instagram.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/12/15-09:39:52.956 4480 Recovering log #3
-2023/12/15-09:39:52.968 4480 Reusing old log D:\Programming\App Development\SocialTrender\Projects\Bot Intern\WebUserData\Headless\Default\IndexedDB\https_www.instagram.com_0.indexeddb.leveldb/000003.log 
+2023/12/19-10:00:29.724 a9d4 Reusing MANIFEST D:\Programming\App Development\SocialTrender\Projects\Bot Intern\WebUserData\Headless\Default\IndexedDB\https_www.instagram.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/12/19-10:00:29.725 a9d4 Recovering log #3
+2023/12/19-10:00:29.740 a9d4 Reusing old log D:\Programming\App Development\SocialTrender\Projects\Bot Intern\WebUserData\Headless\Default\IndexedDB\https_www.instagram.com_0.indexeddb.leveldb/000003.log 
+2023/12/19-10:00:34.226 b764 Level-0 table #5: started
+2023/12/19-10:00:34.232 b764 Level-0 table #5: 524354 bytes OK
+2023/12/19-10:00:34.233 b764 Delete type=0 #3
+2023/12/19-10:00:34.235 a9d4 Manual compaction at level-0 from '\x00\x05\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x06\x00\x00\x00' @ 0 : 0; will stop at (end)

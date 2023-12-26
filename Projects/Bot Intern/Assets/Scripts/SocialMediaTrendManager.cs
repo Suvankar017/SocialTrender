@@ -6,6 +6,7 @@ using SocialTrender;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
+using System.IO;
 
 public class SocialMediaTrendManager : MonoBehaviour
 {
@@ -20,10 +21,10 @@ public class SocialMediaTrendManager : MonoBehaviour
     [SerializeField] private int m_MaxPostCount = 8;
     //[SerializeField] private string m_Keyword = "games";
 
-    public string[] PostLinks { get; private set; }
+    public PostData[] Posts { get; private set; }
     public List<byte[]> Images { get; private set; }
     public float Progress { get; private set; }
-    public string ProgressInfo { get; private set; }
+    public string ProgressMessage { get; private set; }
 
     public event Action OnCompleted;
     public event Action OnFailed;
@@ -42,10 +43,17 @@ public class SocialMediaTrendManager : MonoBehaviour
 
     private void Start()
     {
-        Trender.Init(m_ShowBrowser, null);
-        Trender.SetSearchCompleteCallback(OnSearchCompleted);
-        Trender.SetSearchFailedCallback(OnSearchFailed);
-        Trender.SetProgressReceivedCallback(OnReceiveProgress);
+        CallbackData data = new CallbackData();
+        data.SearchCompleteCallback = OnSearchCompleted;
+        data.SearchFailCallback = OnSearchFailed;
+        data.ProgressCallback = OnReceiveProgress;
+        data.LogMessageCallback = print;
+
+        Trender.Init(m_ShowBrowser, Directory.GetCurrentDirectory());
+
+        //Trender.SetSearchCompleteCallback(OnSearchCompleted);
+        //Trender.SetSearchFailedCallback(OnSearchFailed);
+
     }
 
     private void OnDestroy()
@@ -61,26 +69,36 @@ public class SocialMediaTrendManager : MonoBehaviour
         Trender.Search(keyword, m_MaxPostCount);
     }
 
-    private void OnReceiveProgress(float progress, string info)
+    private void OnReceiveProgress(ProgressData data)
     {
-        Progress = progress;
-        ProgressInfo = info;
+        Progress = data.Progress;
+        ProgressMessage = data.Message;
 
         OnProgressReceived?.Invoke();
     }
 
-    private void OnSearchCompleted(string[] postLinks, List<byte[]> images)
+    //private void OnSearchCompleted(string[] links, List<byte[]> images)
+    //{
+    //    Posts = links;
+    //    Images = images;
+
+    //    OnCompleted?.Invoke();
+    //}
+
+    private void OnSearchCompleted(UnityData data)
     {
-        PostLinks = postLinks;
-        Images = images;
+        print("SEARCH Successfull !!!!!!!!");
+
+        Posts = data.Posts;
+        Images = data.Images;
 
         OnCompleted?.Invoke();
     }
 
     private void OnSearchFailed()
     {
-        OnFailed?.Invoke();
-
         print("SEARCH FAILED !!!!!!!!");
+
+        OnFailed?.Invoke();
     }
 }
